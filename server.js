@@ -1,6 +1,7 @@
-var express = require('express'),
-    ejs = require('ejs'),
-    mongoose = require('mongoose');
+var express     = require('express'),
+    ejs         = require('ejs'),
+    mongoose    = require('mongoose'),
+    bodyParser  = require('body-parser');
 
 var app = express();
 
@@ -11,14 +12,18 @@ var urlSchema = new mongoose.Schema({
 });
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 
 app.get("/", function (req, res) {
-  res.render('index');
+  res.render('index', {id: 'none'});
 });
 
-
+app.get("/:id", function (req, res) {
+  res.render('index', {id: req.params.id});
+  console.log(req.params);
+});
 
 
 // listen for requests :)

@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.15.3",
     "mongoose": "^4.11.11",
-    "ejs": "^2.5.7"
+    "ejs": "^2.5.7",
+    "body-parser": "^1.18.1"
   },
   "engines": {
     "node": "8.x"
