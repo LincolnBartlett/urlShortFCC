@@ -17,12 +17,11 @@ app.set('view engine', 'ejs');
 
 
 app.get("/", function (req, res) {
-  res.render('index', {id: 'none'});
+  res.render('index');
 });
 
-app.get("/:id", function (req, res) {
+app.post("/new/:id", function (req, res) {
   res.render('index', {id: req.params.id});
-  console.log(req.params);
 });
 
 
