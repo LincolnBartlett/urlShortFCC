@@ -26,7 +26,6 @@ app.get("/", function (req, res) {
 
 app.get("/new/:url", function (req, res) {
   var newId = shortid.generate();
-  console.log(newId);
   var newShort = {
     destination: req.params.url,
     id: newId
@@ -35,7 +34,14 @@ app.get("/new/:url", function (req, res) {
       res.send(newShort);  
   });
   
-  console.log(newShort);
+});
+
+app.get('/:id', function (req, res){
+    shortUrl.findOne({id: req.params.id}, function(err, model){
+        var dest = model;
+        console.log(model.destination);
+        res.send(dest);
+    });
 });
 
 
