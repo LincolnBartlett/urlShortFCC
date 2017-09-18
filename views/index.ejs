@@ -12,17 +12,42 @@
   <body>
     <header>
       <h1>
-        Url Shortener
+        URL Shortener
       </h1>
     </header>
 
     <main>
-
+      <p>
+        To use simply input a URL below or affix any URL to the end of:
+        <br>
+        https://lincbarturlshort.glitch.me/new/
+        <br>
+        and you will recieve a JSON object with your original URL and a minified URL.
+        <br>
+        <hr>
+      </p>
+      <h1>
+        Example:
+      </h1>
+      <p>
+        https://lincbarturlshort.glitch.me/new/http://www.lincbart.com/
+        <br>
+        <br>
+        would return:
+        <br>
+        {"original_URL":"http://lincbart.com/","short_URL":"https://lincbarturlshort.glitch.me/B1U1yapqb"}
+      </p>
+    <hr>
+    <h1>
+      Try It out!
+    </h1>
       <form>
         <input id="inputURL" type="text" placeholder="Input URL" required/>
         <input id="inputBtn" type="button" value="Submit"/>
       </form>
-      
+      <p>
+        <i>URL must start with either http:// or https://</i>
+      </p>
     </main>
 
     <footer>
