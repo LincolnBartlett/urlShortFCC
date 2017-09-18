@@ -36,7 +36,7 @@ app.get("/new/:url/*", function (req, res) {
       if (err){
         res.redirect('back');
         }else {
-            res.send(newShort);  
+            res.redirect(`/${newId}/show`);  
         }
     });
     
