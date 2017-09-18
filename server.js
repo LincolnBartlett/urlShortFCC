@@ -8,8 +8,12 @@ var app = express();
 mongoose.connect('mongodb://lincoln:password@ds062448.mlab.com:62448/lincbarturlshort');
 
 var urlSchema = new mongoose.Schema({
+    destination: String,
+    path : String
   
 });
+
+var shortUrl = mongoose.model('Short', urlSchema);
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,7 +25,11 @@ app.get("/", function (req, res) {
 });
 
 app.post("/new/:id", function (req, res) {
-  
+  var newShort = {
+    destination: req.params.id,
+    path:
+  }
+  shortUrl.create()
   
 });
 
