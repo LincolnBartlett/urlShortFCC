@@ -24,10 +24,11 @@ app.get("/", function (req, res) {
   res.render('index');
 });
 
-app.get("/new/:url", function (req, res) {
+app.get("/new/:url/*", function (req, res) {
   var newId = shortid.generate();
+  console.log(req.params);
   var newShort = {
-    destination: req.params.url,
+    destination: req.params[0] + req.params.url,
     id: newId
   }
   shortUrl.create(newShort, function(err,newShort){
@@ -42,7 +43,7 @@ app.get("/new/:url", function (req, res) {
   
 });
 
-app.get('/:id/*', function (req, res){
+app.get('/:id', function (req, res){
     shortUrl.findOne({id: req.params.id}, function(err, model){
       if (err){
         
