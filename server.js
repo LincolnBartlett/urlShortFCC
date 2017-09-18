@@ -56,8 +56,29 @@ app.get('/:id', function (req, res){
             res.redirect('back');
         } else {
             var dest = model.destination;
-            console.log(dest);
             res.redirect(dest);
+        }
+
+      }
+    });
+});
+
+app.get('/:id/show', function (req, res){
+    shortUrl.findOne({id: req.params.id}, function(err, model){
+      if (err){
+        res.redirect('back');
+      }else {
+        if (model === null){
+            res.redirect('back');
+        } else {
+            var originalUrl = model.destination;
+            var shortUrl = `https://lincbarturlshort.glitch.me/${model.id}`;
+            var output = {
+              'original_URL' : originalUrl,
+              'short_URL' : shortUrl
+            }
+          
+            res.render('display',{output: output});
         }
 
       }
