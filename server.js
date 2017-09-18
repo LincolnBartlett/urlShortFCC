@@ -25,28 +25,32 @@ app.get("/", function (req, res) {
 });
 
 app.get("/new/:url/*", function (req, res) {
-  var newId = shortid.generate();
-  console.log(req.params);
-  var newShort = {
-    destination: req.params[0] + req.params.url,
-    id: newId
+  if(req.params.url === 'http:' || 'https:'){
+    var newId = shortid.generate();
+    var newShort = {
+      destination: req.params.url + '/' + req.params[0],
+      id: newId
+    }
+    
+    shortUrl.create(newShort, function(err,newShort){
+      if (err){
+        res.redirect('back');
+        }else {
+            res.send(newShort);  
+        }
+    });
+    
+  }else{
+    res.redirect('back');
   }
-  shortUrl.create(newShort, function(err,newShort){
-      
-    if (err){
-        
-      }else {
-          res.send(newShort);  
-      }
-
-  });
+  
   
 });
 
 app.get('/:id', function (req, res){
     shortUrl.findOne({id: req.params.id}, function(err, model){
       if (err){
-        
+        res.redirect('back');
       }else {
         if (model === null){
             res.redirect('back');
