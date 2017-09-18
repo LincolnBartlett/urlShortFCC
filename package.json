@@ -13,7 +13,8 @@
     "express": "^4.15.3",
     "mongoose": "^4.11.11",
     "ejs": "^2.5.7",
-    "body-parser": "^1.18.1"
+    "body-parser": "^1.18.1",
+    "shortid": "^2.2.8"
   },
   "engines": {
     "node": "8.x"
