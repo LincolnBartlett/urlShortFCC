@@ -31,16 +31,31 @@ app.get("/new/:url", function (req, res) {
     id: newId
   }
   shortUrl.create(newShort, function(err,newShort){
-      res.send(newShort);  
+      
+    if (err){
+        
+      }else {
+          res.send(newShort);  
+      }
+
   });
   
 });
 
-app.get('/:id', function (req, res){
+app.get('/:id/*', function (req, res){
     shortUrl.findOne({id: req.params.id}, function(err, model){
-        var dest = model;
-        console.log(model.destination);
-        res.send(dest);
+      if (err){
+        
+      }else {
+        if (model === null){
+            res.redirect('back');
+        } else {
+            var dest = model.destination;
+            console.log(dest);
+            res.redirect(dest);
+        }
+
+      }
     });
 });
 
